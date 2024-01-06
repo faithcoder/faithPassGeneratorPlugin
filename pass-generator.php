@@ -24,7 +24,7 @@ function enqueue_password_generator_scripts() {
 add_action('wp_enqueue_scripts', 'enqueue_password_generator_scripts');
 add_action('admin_enqueue_scripts', 'enqueue_password_generator_scripts');
 
-
+if ( ! function_exists( 'password_generator_shortcode' ) ){
 function password_generator_shortcode() {
     ob_start();
     ?>
@@ -43,9 +43,11 @@ function password_generator_shortcode() {
     </div>
     <?php
     return ob_get_clean();
-}
+}}
 add_shortcode('password_generator', 'password_generator_shortcode');
 
+
+if ( ! function_exists( 'password_generator_settings_page' ) ){
 function password_generator_settings_page() {
     ?>
     <div class="wrap">
@@ -69,17 +71,18 @@ function password_generator_settings_page() {
         </div>
     </div>
     <?php
-}
-
+}}
+if ( ! function_exists( 'wporg_init' ) ){
 function password_generator_add_settings_link($links) {
     $settings_link = '<a href="options-general.php?page=password-generator-settings">Settings</a>';
     array_push($links, $settings_link);
     return $links;
-}
+}}
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'password_generator_add_settings_link');
 
+if ( ! function_exists( 'wporg_init' ) ){
 function password_generator_add_settings_page() {
     add_options_page('Password Generator Settings', 'Password Generator', 'manage_options', 'password-generator-settings', 'password_generator_settings_page');
-}
+}}
 add_action('admin_menu', 'password_generator_add_settings_page');
 ?>
