@@ -4,6 +4,8 @@ Plugin Name: Faith PassGenerator
 Description: A simple password generator. The Password Generator plugin allows you to easily generate random passwords on your WordPress site. 
 Version: 1.0
 Author: Md Abdullah Al Arif
+Author URI: https://faithcoder.com
+ 
 */
 
 // Exit if accessed directly.
